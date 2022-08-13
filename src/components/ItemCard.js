@@ -152,7 +152,7 @@ const ItemCard = () => {
               </div>
             </div>
           ) : (
-            <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+            <Box style={{marginLeft:'50%',marginTop:"20%"}}>
                     <CircularProgress />
               </Box>
           )}

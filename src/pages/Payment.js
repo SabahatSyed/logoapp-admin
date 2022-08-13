@@ -5,7 +5,8 @@ import CheckoutForm from "../components/CheckoutForm";
 import { useParams } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import BackgroundPayment from "../components/UI/BackgroundPayment";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
@@ -13,6 +14,8 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 export default function App() {
   const [clientSecret, setClientSecret] = useState("");
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("https://logo-backend-payment.herokuapp.com/create-payment-intent", {
@@ -38,8 +41,21 @@ export default function App() {
     appearance,
   };
 
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
+    {loading ? 
+         <Box style={{marginLeft:'50%',marginTop:"20%"}}>
+      <CircularProgress />
+</Box>
+:
+      <>
       <BackgroundPayment />
       <div className="container md:max-w-xl xl:max-w-screen-xl mx-auto pt-[5vh] md:pt-[10vh]">
         <div className="max-w-2xl mx-auto mb-16 text-center">
@@ -49,13 +65,20 @@ export default function App() {
           <p className="pt-2 text-gray-500">Fill in your data for payment</p>
         </div>
         <div className="flex justify-center">
-          {clientSecret && (
+          {clientSecret==""?
+           <Box style={{marginLeft:'50%',marginTop:"20%"}}>
+           <CircularProgress />
+     </Box>
+     :
+          clientSecret && (
             <Elements options={options} stripe={stripePromise}>
               <CheckoutForm selectedPlanId={id} />
             </Elements>
           )}
         </div>
       </div>
+      </>
+    }
     </>
   );
 }

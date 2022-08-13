@@ -71,7 +71,7 @@ export default function Users({ rows }) {
                 </div>
               );
             })):
-            <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+            <Box style={{marginLeft:'47%',marginTop:"20%"}}>
                     <CircularProgress />
               </Box>
           }

@@ -2,7 +2,7 @@ import Backgroundlogin from "../components/UI/Backgroundlogin";
 import Button from "../components/UI/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   addDoc,
   collection,
@@ -11,7 +11,8 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase-config";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 const Signup = () => {
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -21,7 +22,13 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -51,6 +58,12 @@ const Signup = () => {
 
   return (
     <div className="">
+      {loading ? 
+         <Box style={{marginLeft:'50%',marginTop:"20%"}}>
+      <CircularProgress />
+</Box>
+:
+<div>
       <Backgroundlogin />
       <div className="container md:max-w-xl xl:max-w-screen-xl mx-auto xl:flex pt-[10vh] sm:pt-[15vh] xl:pt-[20vh]">
         <div className="xl:w-3/5 xl:px-32 pb-4 xl:pb-0">
@@ -241,6 +254,8 @@ const Signup = () => {
           </div>
         </form>
       </div>
+      </div>
+      }
     </div>
   );
 };

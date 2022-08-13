@@ -54,7 +54,7 @@ export default function AllGalleries() {
                   }
                 })
               ) : (
-                <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+                <Box style={{marginLeft:'50%',marginTop:"5%",marginBottom:'5%'}}>
                     <CircularProgress />
               </Box>
               )}
@@ -102,7 +102,7 @@ export default function AllGalleries() {
                   }
                 })
               ) : (
-                <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+                <Box style={{marginLeft:'50%',marginTop:"5%",marginBottom:'5%'}}>
                     <CircularProgress />
               </Box>
               )}

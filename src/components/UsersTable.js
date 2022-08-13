@@ -55,7 +55,7 @@ const UsersTable = ({ rows }) => {
                   </div>
                 );
               })):
-              <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+              <Box style={{marginLeft:'45%',marginTop:"10%"}}>
                     <CircularProgress />
               </Box>
             }

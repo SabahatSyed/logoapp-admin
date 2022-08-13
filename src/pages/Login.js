@@ -1,10 +1,11 @@
 import Backgroundlogin from "../components/UI/Backgroundlogin";
 import Button from "../components/UI/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useAuth } from "../contexts/AuthContext";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -46,9 +47,25 @@ const Login = () => {
       // alert("invalid");
     }
   }; */
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+<div></div>;
+  
   return (
+
     <div className="">
+      {loading ? 
+         <Box style={{marginLeft:'50%',marginTop:"20%"}}>
+      <CircularProgress />
+</Box>
+:
+<div>
       <Backgroundlogin />
       <div className="container md:max-w-xl xl:max-w-screen-xl mx-auto xl:flex pt-[10vh] sm:pt-[15vh] xl:pt-[20vh]">
         <div className="xl:w-3/5 xl:px-32 pb-4 xl:pb-0">
@@ -182,6 +199,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+      </div>
+}
     </div>
   );
 };

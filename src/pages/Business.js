@@ -142,7 +142,7 @@ export default function Business({ rows }) {
                 );
               }))
               :
-              <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+              <Box style={{marginLeft:'50%',marginTop:"20%"}}>
                     <CircularProgress />
               </Box>
               }

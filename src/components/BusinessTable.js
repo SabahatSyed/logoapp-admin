@@ -123,7 +123,7 @@ const BusinessTable = ({ rows }) => {
                   </div>
                 );
               })):
-              <Box sx={{ display: 'flex' ,marginRight:'40px'}}>
+              <Box style={{marginLeft:'50%',marginTop:"12%"}}>
                     <CircularProgress />
               </Box>
             }
